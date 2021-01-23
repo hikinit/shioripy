@@ -46,10 +46,31 @@ def test_create_series_cartoon():
 
 
 def test_series_from_japan():
-    series = Series(
-        title="Yotsuba&!",
-        media=MediaType.COMIC,
-        origin="JP",
-    )
+    series = Series(origin="JP")
 
     assert series.origin.name == "Japan"
+
+
+def test_series_media_l10n_japanese_comic():
+    series = Series(media=MediaType.COMIC, origin="JP")
+
+    assert series.origin.name == "Japan"
+    assert series.media_l10n == "Manga"
+
+
+def test_series_media_l10n_japanese_cartoon():
+    series = Series(media=MediaType.CARTOON, origin="JP")
+
+    assert series.media_l10n == "Anime"
+
+
+def test_series_media_l10n_korean_comic():
+    series = Series(media=MediaType.COMIC, origin="KR")
+
+    assert series.media_l10n == "Manhwa"
+
+
+def test_series_media_l10n_no_origin_cartoon():
+    series = Series(media=MediaType.CARTOON)
+
+    assert series.media_l10n == "Cartoon"

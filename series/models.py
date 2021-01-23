@@ -11,6 +11,17 @@ class MediaType(models.TextChoices):
     CARTOON = "Cartoon"
 
 
+MEDIA_LOCALIZATION = {
+    MediaType.CARTOON: {
+        "JP": "Anime",
+    },
+    MediaType.COMIC: {
+        "JP": "Manga",
+        "KR": "Manhwa",
+    },
+}
+
+
 class Series(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     title = models.CharField(max_length=200)
@@ -19,3 +30,7 @@ class Series(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.media.value})"
+
+    @property
+    def media_l10n(self):
+        return MEDIA_LOCALIZATION.get(self.media).get(self.origin, self.media)
