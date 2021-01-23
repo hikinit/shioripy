@@ -43,3 +43,13 @@ def test_create_series_cartoon():
     assert series.title == "Puella Magi Madoka Magica"
     assert series.media == "Cartoon"
     assert series.__str__() == "Puella Magi Madoka Magica (Cartoon)"
+
+
+def test_series_from_japan():
+    series = Series(
+        title="Yotsuba&!",
+        media=MediaType.COMIC,
+        origin="JP",
+    )
+
+    assert series.origin.name == "Japan"

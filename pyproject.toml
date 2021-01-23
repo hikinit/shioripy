@@ -8,6 +8,7 @@ authors = ["hikinit <hikinit@pm.me>"]
 python = "^3.8"
 Django = "^3.1.5"
 django-environ = "^0.4.5"
+django-countries = "^7.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"
