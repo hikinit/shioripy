@@ -29,7 +29,7 @@ class Series(models.Model):
     origin = CountryField()
 
     def __str__(self):
-        return f"{self.title} ({self.media.value})"
+        return f"{self.title} ({self.media_l10n})"
 
     @property
     def media_l10n(self):
