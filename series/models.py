@@ -33,4 +33,5 @@ class Series(models.Model):
 
     @property
     def media_l10n(self):
-        return MEDIA_LOCALIZATION.get(self.media).get(self.origin, self.media)
+        media_type = MEDIA_LOCALIZATION.get(self.media, {})
+        return media_type.get(self.origin, self.media)

@@ -69,3 +69,9 @@ def test_series_media_l10n_no_origin_cartoon(series):
     series.media = MediaType.CARTOON
 
     assert series.media_l10n == "Cartoon"
+
+
+def test_series_media_l10n_light_novel(series):
+    series.media = MediaType.LIGHT_NOVEL
+
+    assert series.media_l10n == "Light Novel"
