@@ -2,14 +2,14 @@ import pytest
 from graphene import Schema
 from graphene.test import Client
 from series.models import MediaType, Series
-from series.schema import Query
+from series.schema import Mutation, Query
 
 pytestmark = pytest.mark.django_db
 
 
 @pytest.fixture
 def client():
-    schema = Schema(query=Query)
+    schema = Schema(query=Query, mutation=Mutation)
     return Client(schema)
 
 
@@ -30,4 +30,31 @@ def test_query_series(client):
         "title": "Strike Witches",
         "media": "Cartoon",
         "origin": "Japan",
+    }
+
+
+def test_mutation_create_series(client):
+    response = client.execute(
+        """
+        mutation {
+            createSeries(
+                title: "Strike Witches",
+                media: CARTOON
+                origin: "jp"
+            ) {
+                series {
+                    title
+                    origin
+                    mediaL10n
+                }
+            }
+        }
+    """
+    )
+
+    assert "errors" not in response
+    assert response["data"]["createSeries"]["series"] == {
+        "title": "Strike Witches",
+        "origin": "Japan",
+        "mediaL10n": "Anime",
     }
