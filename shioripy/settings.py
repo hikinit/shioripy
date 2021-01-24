@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third Party
     "django_countries",
+    "graphene_django",
 ]
 
 MIDDLEWARE = [
