@@ -28,7 +28,7 @@ class CreateSeriesMutation(graphene.Mutation):
     def mutate(root, info, title, media, origin):
         series = Series(
             title=title,
-            media=media.value,
+            media=media,
             origin=origin,
         )
         return CreateSeriesMutation(series=series)
