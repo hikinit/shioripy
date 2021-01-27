@@ -89,6 +89,9 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+AUTH_USER_MODEL = "aaa.User"
+
+
 WSGI_APPLICATION = "shioripy.wsgi.application"
 
 
