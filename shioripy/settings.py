@@ -36,6 +36,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 INSTALLED_APPS = [
     # My apps
+    "aaa",
     "series",
     # Default django apps
     "django.contrib.admin",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     # Third Party
     "django_countries",
     "graphene_django",
+    "graphql_auth",
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "shioripy.urls"
+
+GRAPHENE = {
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
+}
 
 TEMPLATES = [
     {
@@ -76,6 +84,30 @@ TEMPLATES = [
         },
     },
 ]
+
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        "graphql_auth.mutations.ObtainJSONWebToken",
+        "graphql_auth.mutations.VerifyToken",
+        "graphql_auth.mutations.RefreshToken",
+        "graphql_auth.mutations.RevokeToken",
+        "graphql_auth.mutations.VerifySecondaryEmail",
+    ],
+}
+
+GRAPHQL_AUTH = {
+    "REGISTER_MUTATION_FIELDS": ["username"],
+    "SEND_ACTIVATION_EMAIL": False,
+}
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_auth.backends.GraphQLAuthBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+AUTH_USER_MODEL = "aaa.User"
+
 
 WSGI_APPLICATION = "shioripy.wsgi.application"
 
