@@ -1,13 +1,4 @@
-import pytest
-from series.models import MediaType, Series
-
-
-@pytest.fixture
-def series():
-    return Series(
-        title="Strike Witches",
-        media=MediaType.CARTOON,
-    )
+from series.models import MediaType
 
 
 def test_series_webnovel(series):
