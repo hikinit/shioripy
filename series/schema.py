@@ -44,3 +44,6 @@ class Query(graphene.ObjectType):
 
 class Mutation(graphene.ObjectType):
     create_series = CreateSeriesMutation.Field()
+
+
+schema = graphene.Schema(Query, Mutation)
