@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Third Party
     "django_countries",
     "graphene_django",
+    "graphql_auth",
 ]
 
 MIDDLEWARE = [
@@ -84,8 +85,24 @@ TEMPLATES = [
     },
 ]
 
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ANY_CLASSES": [
+        "graphql_auth.mutations.Register",
+        "graphql_auth.mutations.ObtainJSONWebToken",
+        "graphql_auth.mutations.VerifyToken",
+        "graphql_auth.mutations.RefreshToken",
+        "graphql_auth.mutations.RevokeToken",
+        "graphql_auth.mutations.VerifySecondaryEmail",
+    ],
+}
+
+GRAPHQL_AUTH = {
+    "REGISTER_MUTATION_FIELDS": ["username"],
+    "SEND_ACTIVATION_EMAIL": False,
+}
+
 AUTHENTICATION_BACKENDS = [
-    "graphql_jwt.backends.JSONWebTokenBackend",
+    "graphql_auth.backends.GraphQLAuthBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 

@@ -135,8 +135,38 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "django-filter"
+version = "2.4.0"
+description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+Django = ">=2.2"
+
+[[package]]
+name = "django-graphql-auth"
+version = "0.3.15"
+description = "Graphql and relay authentication with Graphene for Django."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Django = ">=2.1.0"
+django-filter = ">=2.2.0"
+django-graphql-jwt = "0.3.0"
+graphene = ">=2.1.8"
+graphene-django = ">=2.1.8"
+
+[package.extras]
+dev = ["black (==19.3b0)", "flake8 (==3.7.7)", "pytest (>=3.6.3)", "pytest-cov (>=2.4.0)", "pytest-django (>=3.1.2)", "coveralls"]
+test = ["pytest (>=3.6.3)", "pytest-cov (>=2.4.0)", "pytest-django (>=3.1.2)", "coveralls"]
+
+[[package]]
 name = "django-graphql-jwt"
-version = "0.3.1"
+version = "0.3.0"
 description = "JSON Web Token for Django GraphQL"
 category = "main"
 optional = false
@@ -144,7 +174,7 @@ python-versions = "*"
 
 [package.dependencies]
 Django = ">=1.11"
-graphene-django = ">=2.1.5"
+graphene-django = ">=2.0.0"
 graphql-core = ">=2.1,<3"
 PyJWT = ">=1.5.0"
 
@@ -495,7 +525,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e3c2dd45a8ce9600fbd27f9cb3bebe108ccebb790498ec82e4aecb02b158298f"
+content-hash = "2ccb788a7c06183fbf60a278a0f86b3cf4ffd9f23a9f5db7aab3bed93972c0c0"
 
 [metadata.files]
 aniso8601 = [
@@ -592,9 +622,17 @@ django-environ = [
     {file = "django-environ-0.4.5.tar.gz", hash = "sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde"},
     {file = "django_environ-0.4.5-py2.py3-none-any.whl", hash = "sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4"},
 ]
+django-filter = [
+    {file = "django-filter-2.4.0.tar.gz", hash = "sha256:84e9d5bb93f237e451db814ed422a3a625751cbc9968b484ecc74964a8696b06"},
+    {file = "django_filter-2.4.0-py3-none-any.whl", hash = "sha256:e00d32cebdb3d54273c48f4f878f898dced8d5dfaad009438fe61ebdf535ace1"},
+]
+django-graphql-auth = [
+    {file = "django-graphql-auth-0.3.15.tar.gz", hash = "sha256:88c8df2a65e1ac846ea9be65960353d853d34dfac8dee4222fdce008daa2080a"},
+    {file = "django_graphql_auth-0.3.15-py2.py3-none-any.whl", hash = "sha256:a4e1699053179c0567a060ed592cdd0883bf335a36a8968b97d910f6dde368d5"},
+]
 django-graphql-jwt = [
-    {file = "django-graphql-jwt-0.3.1.tar.gz", hash = "sha256:468e09b8ce67324fcba21dc33b7c1ea9d234bfc10df7cbfe9c5477be0302f933"},
-    {file = "django_graphql_jwt-0.3.1-py2.py3-none-any.whl", hash = "sha256:2189f6d1a13b827d486780fa74a631a15e4f7f0235a3a87a487736b5b0dc4690"},
+    {file = "django-graphql-jwt-0.3.0.tar.gz", hash = "sha256:c9c611d98510b57146c21484478eae793249553af3766a593e8f25ce73d3255a"},
+    {file = "django_graphql_jwt-0.3.0-py2.py3-none-any.whl", hash = "sha256:bcf0882a492e2148cba7cba3c39cf57834f736a2c289b66852239faf9b59b61e"},
 ]
 flake8 = [
     {file = "flake8-3.8.4-py2.py3-none-any.whl", hash = "sha256:749dbbd6bfd0cf1318af27bf97a14e28e5ff548ef8e5b1566ccfb25a11e7c839"},
