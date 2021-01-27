@@ -36,6 +36,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 INSTALLED_APPS = [
     # My apps
+    "aaa",
     "series",
     # Default django apps
     "django.contrib.admin",
@@ -61,6 +62,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "shioripy.urls"
 
+GRAPHENE = {
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
+}
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -75,6 +82,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 WSGI_APPLICATION = "shioripy.wsgi.application"
