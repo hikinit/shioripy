@@ -1,5 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
+from graphql_jwt.decorators import login_required
 
 from series.models import MediaType, Series
 
@@ -25,10 +26,11 @@ class CreateSeriesMutation(graphene.Mutation):
     series = graphene.Field(SeriesType)
 
     @staticmethod
+    @login_required
     def mutate(root, info, title, media, origin):
         series = Series(
             title=title,
-            media=media.value,
+            media=media,
             origin=origin,
         )
         return CreateSeriesMutation(series=series)

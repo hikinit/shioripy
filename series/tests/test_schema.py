@@ -20,8 +20,31 @@ def test_query_series(client_query):
     }
 
 
-def test_mutation_create_series(client_query):
+def test_mutation_create_series_unauthenticated(client_query):
     response = client_query(
+        """
+        mutation {
+            createSeries(
+                title: "Strike Witches",
+                media: CARTOON
+                origin: "jp"
+            ) {
+                series {
+                    title
+                    origin
+                    mediaL10n
+                }
+            }
+        }
+    """
+    )
+    response = json.loads(response.content)
+
+    assert "errors" in response
+
+
+def test_mutation_create_series_authenticated(authenticated_client_query):
+    response = authenticated_client_query(
         """
         mutation {
             createSeries(
